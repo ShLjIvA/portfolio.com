@@ -20,3 +20,16 @@ Route::get('/', function () {
 Route::get('/zdravo', function () {
     return "Zdravo";
 });
+
+Route::get('/posts', function () {
+    $posts = DB::table('posts')->get();
+
+    foreach ($posts as $post)
+    {
+        echo ($post->title);
+        echo "<br>";
+        echo ($post->body);
+        echo "<br>";
+        echo "<hr>";
+    }
+});
