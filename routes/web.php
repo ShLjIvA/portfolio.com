@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,15 +22,6 @@ Route::get('/zdravo', function () {
     return "Zdravo";
 });
 
-Route::get('/posts', function () {
-    $posts = DB::table('posts')->get();
+Route::get('/posts', [PostController::class, 'index']);
 
-    foreach ($posts as $post)
-    {
-        echo ($post->title);
-        echo "<br>";
-        echo ($post->body);
-        echo "<br>";
-        echo "<hr>";
-    }
-});
+Route::get('/posts/{id}', [PostController::class, 'show']);
