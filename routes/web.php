@@ -22,6 +22,8 @@ Route::get('/zdravo', function () {
     return "Zdravo";
 });
 
-Route::get('/posts', [PostController::class, 'index']);
+Route::resource('posts', PostController::class);
 
-Route::get('/posts/{id}', [PostController::class, 'show']);
+
+//Route::get('/posts', [PostController::class, 'index']);
+//Route::get('/posts/{id}', [PostController::class, 'show']);
