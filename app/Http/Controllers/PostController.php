@@ -60,13 +60,18 @@ class PostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     *gi
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $model = new PostModel();
+        $result = $model->getPost($id);
+        if($result == null)
+            return abort(404);
+        $this->data['post'] = $result;
+        return view('edit', $this->data);
     }
 
     /**
@@ -78,7 +83,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newTitle = $request->input('titleEdit');
+        $newBody = $request->input('bodyEdit');
+        $model = new PostModel();
+        $result = $model->updatePost($id, $newTitle, $newBody);
+        if($result){
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -90,5 +101,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         $result = deletePost($id);
+        dd($result);
     }
 }

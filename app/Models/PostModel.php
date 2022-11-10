@@ -17,6 +17,10 @@ class PostModel
         return DB::table('posts')->where('id', $id)->first();
     }
 
+    public function updatePost($id, $newTitle, $newBody){
+        return DB::table('posts')->where('id', $id)->update(['title' => $newTitle, 'body' => $newBody, 'updated_at' => now()]);
+    }
+
     public function deletePost($id){
         return DB::table('posts')->where('id', $id)->update(['deleted_at' => now()]);
     }

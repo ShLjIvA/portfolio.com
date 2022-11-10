@@ -10,7 +10,8 @@
         <img src="../{{$post->image}}" alt="{{$post->title}}">
         <h2>{{$post->title}}</h2>
         <p>{{$post->body}}</p>
+        <a href="{{ url('/posts/' . $post->id . '/edit') }}" class="btn btn-xs btn-warning pull-right">Edit</a>
     </div>
-    <button></button>
+
 </div>
 @endsection
